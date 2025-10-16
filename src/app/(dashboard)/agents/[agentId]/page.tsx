@@ -1,4 +1,4 @@
-import { getQueryClient, trpc } from "@/app/trpc/server";
+import { getQueryClient, trpc } from "@/trpc/server";
 import {
   AgentIdView,
   AgentsIdViewError,

@@ -1,4 +1,3 @@
-import { useTRPC } from "@/app/trpc/client";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -22,6 +21,7 @@ import { useState } from "react";
 import { CommandSelect } from "@/components/command-select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog";
+import { useTRPC } from "@/trpc/client";
 
 interface MeetingFormProps {
   onSuccess?: (id?: string) => void;

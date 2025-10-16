@@ -1,4 +1,4 @@
-import { createTRPCRouter, protectedProcedure } from "@/app/trpc/init";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { db } from "@/db";
 import { agents } from "@/db/schema";
 import { agentsInsertSchema, agentsUptadeSchema } from "../schemas";
@@ -76,7 +76,7 @@ export const agentsRouter = createTRPCRouter({
         .from(agents)
         .where(
           and(
-            eq(agents.userId, ctx.auth.session.userId),
+            eq(agents.userId, ctx.auth.user.id),
             search ? ilike(agents.name, `%${search}%`) : undefined
           )
         )
@@ -89,7 +89,7 @@ export const agentsRouter = createTRPCRouter({
         .from(agents)
         .where(
           and(
-            eq(agents.userId, ctx.auth.session.userId),
+            eq(agents.userId, ctx.auth.user.id),
             search ? ilike(agents.name, `%${search}%`) : undefined
           )
         );

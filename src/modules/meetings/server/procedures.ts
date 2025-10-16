@@ -1,4 +1,4 @@
-import { createTRPCRouter, protectedProcedure } from "@/app/trpc/init";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { db } from "@/db";
 import { agents, meetings } from "@/db/schema";
 // import { agentsInsertSchema, agentsUptadeSchema } from "../schemas";
@@ -62,7 +62,7 @@ export const meetingsRouter = createTRPCRouter({
         .innerJoin(agents, eq(meetings.agentId, agents.id))
         .where(
           and(
-            eq(meetings.userId, ctx.auth.session.userId),
+            eq(meetings.userId, ctx.auth.user.id),
             search ? ilike(meetings.name, `%${search}%`) : undefined
           )
         )
@@ -76,7 +76,7 @@ export const meetingsRouter = createTRPCRouter({
         .innerJoin(agents, eq(meetings.agentId, agents.id))
         .where(
           and(
-            eq(meetings.userId, ctx.auth.session.userId),
+            eq(meetings.userId, ctx.auth.user.id),
             search ? ilike(meetings.name, `%${search}%`) : undefined
           )
         );

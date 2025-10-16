@@ -1,4 +1,4 @@
-import { useTRPC } from "@/app/trpc/client";
+
 import { AgentGetOne } from "../../types";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useTRPC } from "@/trpc/client";
 
 interface AgentFormProps {
   onSuccess?: () => void;

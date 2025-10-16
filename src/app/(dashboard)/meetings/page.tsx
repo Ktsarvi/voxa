@@ -1,4 +1,4 @@
-import { getQueryClient, trpc } from "@/app/trpc/server";
+import { getQueryClient, trpc } from "@/trpc/server";
 import { auth } from "@/lib/auth";
 import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 import {
