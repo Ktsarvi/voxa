@@ -12,7 +12,7 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { SearchParams } from "nuqs";
-import { loadSearchParams } from "@/modules/agents/param";
+import { loadSearchParams } from "@/modules/agents/params";
 
 interface Props {
   searchParams: Promise<SearchParams>;
