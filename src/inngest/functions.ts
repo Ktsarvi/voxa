@@ -5,6 +5,7 @@ import { StreamTranscriptItem } from "@/modules/meetings/types";
 import { eq, inArray } from "drizzle-orm";
 import JSONL from "jsonl-parse-stringify";
 import { createAgent, openai, TextMessage } from "@inngest/agent-kit";
+import { generateAvatarUri } from "@/lib/avatar";
 
 const summarizer = createAgent({
   name: "summarizer",
@@ -76,6 +77,10 @@ export const meetingsProcessing = inngest.createFunction(
             ...item,
             user: {
               name: "Unknown",
+              image: generateAvatarUri({
+                seed: "Unknown",
+                variant: "initials",
+              }),
             },
           };
         }
@@ -95,10 +100,13 @@ export const meetingsProcessing = inngest.createFunction(
     );
 
     await step.run("save-summary", async () => {
-      await db.update(meetings).set({
-        summary: (output[0] as TextMessage).content as string,
-        status: "completed",
-      }).where(eq(meetings.id, event.data.meetingId))
+      await db
+        .update(meetings)
+        .set({
+          summary: (output[0] as TextMessage).content as string,
+          status: "completed",
+        })
+        .where(eq(meetings.id, event.data.meetingId));
     });
   }
 );
