@@ -1,7 +1,15 @@
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
@@ -58,22 +66,25 @@ export const DashboardUserButton = () => {
           <ChevronDownIcon className="size-4 shrink-0" />
         </DrawerTrigger>
 
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>{data.user.name}</DrawerTitle>
-              <DrawerDescription>{data.user.email}</DrawerDescription>
-            </DrawerHeader>
-            <DrawerFooter>
-              <Button variant="outline" onClick={() => {}}>
-                  <CreditCardIcon className="size-4 text-black"/>
-                  Billing
-              </Button>
-              <Button variant="outline" onClick={onLogOut}>
-                  <LogOutIcon className="size-4 text-black"/>
-                  Log Out
-              </Button>
-            </DrawerFooter>
-          </DrawerContent>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>{data.user.name}</DrawerTitle>
+            <DrawerDescription>{data.user.email}</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <Button
+              variant="outline"
+              onClick={() => authClient.customer.portal()}
+            >
+              <CreditCardIcon className="size-4 text-black" />
+              Billing
+            </Button>
+            <Button variant="outline" onClick={onLogOut}>
+              <LogOutIcon className="size-4 text-black" />
+              Log Out
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     );
   }
@@ -110,7 +121,10 @@ export const DashboardUserButton = () => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer flex items-center justify-between">
+        <DropdownMenuItem
+          onClick={() => authClient.customer.portal()}
+          className="cursor-pointer flex items-center justify-between"
+        >
           Billing
           <CreditCardIcon className="size-4" />
         </DropdownMenuItem>
