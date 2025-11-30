@@ -7,6 +7,8 @@ import { TRPCReactProvider } from "@/trpc/client";
 
 const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -19,19 +21,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <NuqsAdapter>
-      <TRPCReactProvider>
-        <html lang="en">
-          <body className={`${inter.className} ${inter.className} antialiased`}>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans antialiased">
+        <NuqsAdapter>
+          <TRPCReactProvider>
             <Toaster />
             {children}
-          </body>
-        </html>
-      </TRPCReactProvider>
-    </NuqsAdapter>
+          </TRPCReactProvider>
+        </NuqsAdapter>
+      </body>
+    </html>
   );
 }
