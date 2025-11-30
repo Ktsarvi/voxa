@@ -102,6 +102,7 @@ export const meetingsRouter = createTRPCRouter({
         );
 
       const speakers = [...userSpeakers, ...agentSpeakers];
+
       const transcriptWithSpeakers = transcript.map((item) => {
         const speaker = speakers.find(
           (speaker) => speaker.id === item.speaker_id

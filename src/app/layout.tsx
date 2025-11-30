@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Voxa AI",
   description: "Call with AI agents",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
