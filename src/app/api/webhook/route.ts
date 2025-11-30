@@ -23,7 +23,7 @@ function verifySignatureWithSDK(body: string, signature: string): boolean {
   return streamVideo.verifyWebhook(body, signature);
 }
 
-export async function POSt(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const siganture = req.headers.get("x-signature");
   const apiKey = req.headers.get("x-api-key");
 
@@ -86,6 +86,7 @@ export async function POSt(req: NextRequest) {
       .select()
       .from(agents)
       .where(eq(agents.id, existingMeeting.agentId));
+      
     if (!existingAgent) {
       return NextResponse.json({ error: "Agent not found" }, { status: 404 });
     }

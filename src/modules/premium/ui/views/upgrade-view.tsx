@@ -27,6 +27,27 @@ export const UpgradeView = () => {
           plan
         </h5>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Free Tier Card */}
+          <PricingCard
+            buttonText="Current Plan"
+            onClick={() => {}}
+            title="Free"
+            price={0}
+            priceSuffix="/month"
+            description="Perfect for getting started"
+            variant={
+              currentSubscription?.name === "Free" ? "highlighted" : "default"
+            }
+            features={[
+              "5 meetings per month",
+              "Basic features",
+              "Email support",
+            ]}
+            badge={
+              currentSubscription?.name === "Free" ? "Current Plan" : undefined
+            }
+          />
+
           {products.map((product) => {
             const isCurrentProduct = currentSubscription?.id === product.id;
             const isPremium = !!currentSubscription;
